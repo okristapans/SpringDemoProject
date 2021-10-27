@@ -1,16 +1,31 @@
-package com.example.demo;
+package com.example.demo.entity;
 import javax.persistence.*;
 
 @Entity
 @Table(name = "students")
 public class Student {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    @SequenceGenerator(
+            name = "student_sequence",
+            sequenceName = "student_sequence",
+            allocationSize = 1
+    )
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "student_sequence"
+    )
+    private Integer id;
     private String name;
     private String address;
 
-    public long getId() {
+    public Student(String name, String address) {
+        this.name = name;
+        this.address = address;
+    }
+
+    public Student(){}
+
+    public int getId() {
         return id;
     }
 
