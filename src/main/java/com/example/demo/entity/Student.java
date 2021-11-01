@@ -1,5 +1,7 @@
 package com.example.demo.entity;
+
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 
 @Entity
 @Table(name = "students")
@@ -7,8 +9,12 @@ public class Student {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    @NotEmpty
     private String name;
     private String address;
+    @ManyToOne
+    @JoinColumn(name="group_id", nullable=true)
+    private Group group;
 
     public Student(String name, String address) {
         this.name = name;
