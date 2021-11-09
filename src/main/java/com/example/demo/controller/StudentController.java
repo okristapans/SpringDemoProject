@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import com.example.demo.entity.QStudent;
 import com.example.demo.entity.Student;
 import com.example.demo.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,6 +42,11 @@ public class StudentController {
     @PutMapping("/student/put/{id}")
     public void updateStudent(@PathVariable(value = "id") Long id, @RequestBody Student student) {
         studentService.putStudent(id, student);
+    }
+
+    @GetMapping("/stud")
+    public QStudent querryStudents() {
+        return studentService.querryStudents();
     }
 
 
