@@ -1,9 +1,7 @@
 package com.example.demo.service;
 
-import com.example.demo.entity.QStudent;
 import com.example.demo.entity.Student;
 import com.example.demo.repository.StudentRepository;
-import com.querydsl.jpa.impl.JPAQuery;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -31,6 +29,10 @@ public class StudentService {
         return studentRepository.save(student);
     }
 
+    public List<Student> getAddress(String address) {
+        return studentRepository.findByAddress(address);
+    }
+
     public void deleteStudent(Long id) {
         studentRepository.deleteById(id);
     }
@@ -43,16 +45,5 @@ public class StudentService {
             putStudent.setName(student.getName());
         return studentRepository.save(putStudent);
     }
-
-    public QStudent querryStudents(){
-        QStudent student = QStudent.student;
-        JPAQuery<?> query = new JPAQuery<Void>();
-        System.out.println(query.select(student)
-                .from(student)
-                .where(student.address.eq("Riga"))
-                .fetchOne());
-         return student;
-    }
-
 
 }
