@@ -10,7 +10,9 @@ public class Student {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @NotEmpty
+    @Column(name = "studentName")
     private String name;
+    @Column(name = "studentAddress")
     private String address;
     @ManyToOne
     @JoinColumn(name="group_id", nullable=true)
